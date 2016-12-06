@@ -8,7 +8,7 @@ Adafruit_MotorShield AFMS1(0x61);//binary0001, bridge A0
 Adafruit_MotorShield AFMS2(0x62);//binary0010, bridge A1
 Adafruit_MotorShield AFMS3(0x63);//binary0011, bridge A0 & A1
  
-Adafruit_DCMotor *wmMotor30 = AFMS0.getMotor(1);
+Adafruit_DCMotor *wmMotor30 = AFMS0.getMotor(1);//naming motors
 Adafruit_DCMotor *wmMotor200 = AFMS0.getMotor(2);
 Adafruit_DCMotor *sMotorFilter = AFMS1.getMotor(1);
 Adafruit_DCMotor *sMotorH2O = AFMS1.getMotor(2);
@@ -17,7 +17,7 @@ Adafruit_DCMotor *sMotorSDC = AFMS2.getMotor(2);
 Adafruit_DCMotor *sMotor3W = AFMS3.getMotor(1);
 Adafruit_DCMotor *sMotorWaste = AFMS3.getMotor(2);
 
-boolean wmMotor30Enabled = false;//Motor running or not
+boolean wmMotor30Enabled = false;//Motor running or not upon start up
 boolean wmMotor200Enabled = false;
 boolean sMotorFilterEnabled = false;
 boolean sMotorH2OEnabled = false;
@@ -26,8 +26,8 @@ boolean sMotorSDCEnabled = false;
 boolean sMotor3WEnabled = false;
 boolean sMotorWasteEnabled = false;
 
-const int switchPin1 = 2;
-const int switchPin2 = 4;
+const int switchPin1 = 2;//Hardware on/off switch
+const int switchPin2 = 4;//Hardware pause switch
 
 int switchState1 = 0; //current state of switch
 int previouswitchState1 = 0; //previous state of switch
@@ -58,13 +58,13 @@ AFMS2.begin(); // call shield 2
 AFMS3.begin(); // call shield 3
 wmMotor30Enabled = false; // wmMotor Off
 wmMotor200Enabled = false; // wmMotor Off
-sMotorFilterEnabled = false; // NC valve
-sMotorH2OEnabled = true;// NO valve
+sMotorFilterEnabled = false; // Normally closed (NC) valve
+sMotorH2OEnabled = true;// Normally open (NO) valve, therefore activation closes this
 sMotorH2O->run(FORWARD);
 sMotorH2O->setSpeed(255);
 sMotorDNaseEnabled = false; // NC valve
 sMotorSDCEnabled = false; // NC valve
-sMotor3WEnabled = true; // wmMotor200 port open
+sMotor3WEnabled = true; // wmMotor200 port open, therefore any leak will run into the chamber and not the organ.
 sMotor3W->run(FORWARD);
 sMotor3W->setSpeed(255);
 sMotorWasteEnabled = false; // NO valve
@@ -102,9 +102,9 @@ unsigned long Pausa(){//pause function, all motors off and valves closed
 
 void loop() {
   // put your main code here, to run repeatedly:
- switchState1 = digitalRead(switchPin1);
+ switchState1 = digitalRead(switchPin1);//is the hardware turned on
  delay(10);
- switchState2 = digitalRead(switchPin2);
+ switchState2 = digitalRead(switchPin2);//is the hardware pause on
  delay(10);
   if((switchState1 == HIGH) && (switchState2 == LOW)){
     elapsedPause = 0;
