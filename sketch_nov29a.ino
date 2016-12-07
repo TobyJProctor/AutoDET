@@ -30,13 +30,10 @@ const int switchPin1 = 2;//Hardware on/off switch
 const int switchPin2 = 4;//Hardware pause switch
 
 int switchState1 = 0; //current state of switch
-int previouswitchState1 = 0; //previous state of switch
 int switchState2 = 0;
-int previousSwitchState2 = 0;
 
 unsigned long startMillis = 0;
 unsigned long currentMillis = 0;
-unsigned long startDelay = 5000;
 unsigned long elapsedPause = 0;
 unsigned long elapsedMillis = 0;
 unsigned long wmMotor200PrimeMillis = 10000;
@@ -84,13 +81,15 @@ unsigned long Pausa(){//pause function, all motors off and valves closed
     wmMotor30Enabled = false;
     wmMotor200Enabled = false;
     sMotorFilterEnabled = false;
-    sMotorH2OEnabled = true;
+    sMotorH2OEnabled = true;//close water valve
     sMotorH2O->run(FORWARD);
     sMotorH2O->setSpeed(255);
     sMotorDNaseEnabled = false;
     sMotorSDCEnabled = false;
-    sMotor3WEnabled = false;
-    sMotorWasteEnabled = true;
+    sMotor3WEnabled = true;//close organ valve
+    sMotor3W->run(FORWARD);
+    sMotor3W->setSpeed(255);
+    sMotorWasteEnabled = true;//close waste valve
     sMotorWaste->run(FORWARD);
     sMotorWaste->setSpeed(255);
     if(switchState2 == LOW){
