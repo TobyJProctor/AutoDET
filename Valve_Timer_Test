@@ -37,7 +37,6 @@ unsigned long elapsedPause = 0;
 unsigned long elapsedMillis = 0;
 unsigned long wmMotor200PrimeMillis = 5000;
 unsigned long wmMotor30RunH2O72hMillis = 5000;
-unsigned long wmMotor200CleanMillis = 5000;
 unsigned long wmMotor30RunH2O72hMillis = 5000;
 unsigned long wmMotor30RunH2O12hMillis = 5000;
 unsigned long wmMotor30RunH2O1hMillis = 5000;
