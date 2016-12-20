@@ -1,4 +1,4 @@
-/*This code runs both pumps, consecutively, for 5 s each.
+/*This code runs all motors, consecutively, for 5 s each.
 There is no switch required for operation.
 At the end of loop the pumps should be turned off permanently.*/ 
 
