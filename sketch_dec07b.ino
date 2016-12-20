@@ -1,3 +1,7 @@
+/*This code runs both pumps, consecutively, for 5 s each.
+There is no switch required for operation.
+At the end of loop the pumps should be turned off permanently.*/ 
+
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 #include "utility/Adafruit_MS_PWMServoDriver.h"
