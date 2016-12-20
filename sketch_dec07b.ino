@@ -54,4 +54,12 @@ void loop() {
       wmMotor30->setSpeed(100);
       currentMillis = millis(); 
   }
+    currentMillis = millis();
+    while(currentMillis > 0){
+     wmMotor200Enabled = false;
+     wmMotor30Enabled = false;
+     wmMotor30->run(RELEASE);
+     wmMotor30->setSpeed(0);
+     currentMilliss = millis();
+  }
 }
