@@ -81,6 +81,7 @@ digitalWrite(switchPin2, LOW);
 
 unsigned long Pausa(){//pause function, all motors off and valves closed
   while (switchState2 == HIGH){
+    switchState2 = digitalRead(switchPin2);
     wmMotor30Enabled = false;
     wmMotor200Enabled = false;
     sMotorFilterEnabled = false;
